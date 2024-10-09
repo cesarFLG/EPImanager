@@ -1,0 +1,20 @@
+{%extends 'index.html'%}
+
+{% block content %}   
+<div class="container mt-5">
+    <h1>Editar Usuário</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" value="{{ colaborador.nome }}" required>
+
+        <label for="numero">Numero:</label>
+        <input type="numero" name="numero" value="{{ colaborador.numero }}" required>
+
+        <button type="submit" class="btn btn-danger btn-sm">Salvar</button>
+    </form>
+
+    <a href="{% url 'colaboradores_cadastrados' %}">Voltar para a lista de usuários</a>
+
+</div>
+{% endblock %}

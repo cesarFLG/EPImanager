@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+{% block content %}
+<h2 style="font-family: 'Source Sans Pro', sans-serif; font-weight: 600; color: #606060;">Cadastrar Empréstimo de EPI</h2>
+
+<form method="POST" style="max-width: 500px; margin: auto;">
+    {% csrf_token %}
+
+    <label for="colaborador" style="font-family: 'Source Sans Pro', sans-serif; font-weight: 600;">Colaborador:</label>
+    <select id="colaborador" name="colaborador" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+        <option value="">Selecione o colaborador</option>
+        {% for colaborador in colaboradores %}
+        <option value="{{ colaborador.id }}">{{ colaborador.nome }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="epi" style="font-family: 'Source Sans Pro', sans-serif; font-weight: 600;">EPI:</label>
+    <select id="epi" name="epi" required style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+        <option value="">Selecione o EPI</option>
+        {% for epi in epis %}
+        <option value="{{ epi.id }}">{{ epi.nome }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="data_devolucao" style="font-family: 'Source Sans Pro', sans-serif; font-weight: 600;">Data de Devolução (opcional):</label>
+    <input type="datetime-local" id="data_devolucao" name="data_devolucao" style="width: 100%; padding: 10px; margin-bottom: 20px; border: 1px solid #ccc; border-radius: 5px;">
+
+    <div class="button-group">
+    <button type="submit" style="padding: 10px 20px; background-color: #D8D9DB; border: none; border-radius: 30px; font-family: 'Source Sans Pro', sans-serif; font-weight: 600; color: #606060;">
+        Cadastrar Empréstimo   
+        <a href="{% url 'lista_emprestimos' %}">
+     <button type="submit" style="padding: 10px 20px; background-color: #D8D9DB; border: none; border-radius: 30px; font-family: 'Source Sans Pro', sans-serif; font-weight: 600; color: #606060;">
+        Ver Emprestimos
+    </a>
+    </button>
+    </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% block content %}
+
+<title>Lista de Empréstimos</title>
+</head>
+<body>
+    <h1>Lista de EPIs Emprestados</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Colaborador</th>
+                <th>EPI</th>
+                <th>Data de Empréstimo</th>
+                <th>Data de Devolução</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emprestimo in emprestimos %}
+            <tr>
+                <td>{{ emprestimo.colaborador }}</td>
+                <td>{{ emprestimo.epi }}</td>
+                <td>{{ emprestimo.data_emprestimo }}</td>
+                <td>{{ emprestimo.data_devolucao }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+{% endblock %}

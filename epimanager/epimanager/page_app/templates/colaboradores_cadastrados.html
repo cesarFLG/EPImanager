@@ -1,0 +1,67 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<h1 style="font-family: 'Source Sans Pro', sans-serif; font-weight: 600; color: #606060; margin-bottom: 10px; display: block;">Colaboradores Cadastrados:</h1>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  
+<table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+    <thead>
+        <tr>
+            <th style="border-bottom: 1px solid #ccc; padding: 10px; text-align: left;">Nome</th>
+            <th style="border-bottom: 1px solid #ccc; padding: 10px; text-align: left;">Número</th>
+            <th style="border-bottom: 1px solid #ccc; padding: 10px; text-align: left;">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for colaborador in colaboradores %}
+        <tr>
+            <td style="border-bottom: 1px solid #ccc; padding: 10px;">{{ colaborador.nome }}</td>
+            <td style="border-bottom: 1px solid #ccc; padding: 10px;">{{ colaborador.numero }}</td>
+            <td style="border-bottom: 1px solid #ccc; padding: 10px;">
+                <a href="{% url 'editar_colaborador' colaborador.id %}">
+                    <button type="button" style="display: flex; align-items: center; justify-content: center; padding: 0.5em 1em;">
+                    <i class="fas fa-pen" style="margin-right: 8px;"></i> Editar
+                    </button>
+                </a>
+                <a href="{% url 'excluir_colaborador' colaborador.id %}" onclick="return confirm('Tem certeza de que deseja excluir este colaborador?');">
+                    <button type="button" style="display: flex; align-items: center; justify-content: center; padding: 0.5em 1em;">
+                        <i class="fas fa-trash" style="margin-right: 8px;"></i> Excluir
+                    </button>
+                </a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3" style="padding: 10px; text-align: center;">Nenhum colaborador cadastrado.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<style>
+button {
+    color: #090909;
+    padding: 0.7em 1.7em;
+    font-size: 18px;
+    border-radius: 0.5em;
+    background: #e8e8e8;
+    cursor: pointer;
+    border: 1px solid #e8e8e8;
+    transition: all 0.3s;
+    box-shadow: 6px 6px 12px #c5c5c5, -6px -6px 12px #ffffff;
+}
+
+button:hover {
+    border: 1px solid white;
+}
+
+button:active {
+    box-shadow: 4px 4px 12px #c5c5c5, -4px -4px 12px #ffffff;
+}
+</style>
+
+<a href="{% url 'colaboradores' %}">
+    <button type="button" justify-content: center;>Cadastrar Novo Colaborador</button>
+</a>
+
+{% endblock %}
